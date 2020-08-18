@@ -1,8 +1,7 @@
 <template>
-    <basic-template-vue class="menu">
+    <basic-template-vue>
       <nav-vue/>
-      <div class="container mt-5">
-
+      <div class="container">
         <form>
 
           <div class="form-group">
@@ -43,44 +42,39 @@
 import BasicTemplateVue from '@/components/templates/BasicTemplate/BasicTemplateVue'
 import NavVue from '@/components/layouts/NavVue/NavVue'
 export default {
-  name: 'home',
+  name: 'list',
   data () {
     return {
-      person: {name: '' , gender: '', email: '', address: '' , height: ''}
+      peoples: { }
+    } 
+  },
+  methods:{
+
+    edit(id)
+    {
+      alert('to aqui')
+      console.log(`delete/${id}`)
+       this.$http.delete(this.$urlAPI+`delete/${id}`, {
+
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(e => {
+        console.log(e)
+        
+      })
     }
+   
   },
   components:{
     BasicTemplateVue,
     NavVue
-  },
-  methods:{
-     register(){
-        this.$http.post(this.$urlAPI+`create`, {
-          name: this.person.name,
-          gender: this.person.gender,
-          email: this.person.email, 
-          address: this.person.address,
-          height: this.person.height
-  
-        })
-        .then(response => {
-          console.log(response.data)
-          console.log(response.status)
-        })
-        .catch(e => {
-          console.log(e)
-         
-        })
-      }
-
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .menu span{
-    font-size: 30px;
-    border-bottom: 15px solid purple;
-  }
+ 
 </style>

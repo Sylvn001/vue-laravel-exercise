@@ -15,6 +15,8 @@ class PersonController extends Controller
     public function list()
     {
         $person = Person::orderBy('name', 'desc')->paginate(10);
+        
+        return  $person;
     }
 
     /**
@@ -41,6 +43,7 @@ class PersonController extends Controller
         $person->address = $request->address;
         $person->height = $request->height;
         $person->save();
+        
         return $person;
     }
     
